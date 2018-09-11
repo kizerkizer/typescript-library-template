@@ -1,0 +1,23 @@
+{
+  "author": {
+    "name": "Alex Kizer"
+  },
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "rollup": "^0.65.2",
+    "typescript": "^3.0.3"
+  },
+  "license": "MIT",
+  "main": "./bin/node/index.js",
+  "module": "./bin/esm/index.js",
+  "ts": "./bin/typescript/index.ts",
+  "name": "typescript-library-template",
+  "scripts": {
+    "build": "tsc --project ./tsconfig/tsconfig.node.commonjs.json && tsc --project ./tsconfig/tsconfig.esm.json",
+    "build-tests": "tsc --p tsconfig.tests.json",
+    "clean": "rm -rf ./bin && mkdir bin && mkdir bin/tests"
+  },
+  "types": "./bin/index.d.ts",
+  "version": "1.1.0"
+}

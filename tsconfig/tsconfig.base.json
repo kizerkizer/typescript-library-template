@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "allowSyntheticDefaultImports": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "charset": "utf-8",
+        "checkJs": false,
+        "declaration": true,
+        "declarationMap": true,
+        "diagnostics": false,
+        "disableSizeLimit": true,
+        "downlevelIteration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "moduleResolution": "classic",
+        "strict": true,
+        "sourceMap": true
+    }
+}
