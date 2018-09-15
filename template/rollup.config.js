@@ -4,9 +4,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import camelcase from 'camelcase';
 
 export default {
-    input: './bin/esm/index.js',
+    input: './dist/esm/index.js',
     output: {
-        file: './bin/browser/index.js',
+        file: './dist/browser/index.js',
         format: 'umd',
         name: camelcase(JSON.parse(fs.readFileSync('./package.json')).displayName),
         plugins: [
