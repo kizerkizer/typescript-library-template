@@ -28,7 +28,7 @@ commander
                 console.error(err);
                 return;
             }
-            let pkg = JSON.parse(fs.readFileSync('package.json'));
+            let pkg = JSON.parse(fs.readFileSync('package.json')).toString();
             subName(pkg, name);
             fs.writeFileSync('package.json', pkg);
 
