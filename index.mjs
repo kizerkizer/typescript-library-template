@@ -16,7 +16,7 @@ const __dirname = dirname(new URL(import.meta.url).pathname), // https://stackov
     {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
-    subName = (fileContents, name) => fileContents.replace(/\%name\%/g, name);
+    subName = (fileContents, name) => { return fileContents.replace(/\%name\%/g, name) };
 
 commander
     .version(version)
@@ -28,12 +28,13 @@ commander
                 console.error(err);
                 return;
             }
-            let pkg = JSON.parse(fs.readFileSync('package.json')).toString();
-            subName(pkg, name);
+
+            let pkg = fs.readFileSync('package.json').toString();
+            pkg = subName(pkg, name);
             fs.writeFileSync('package.json', pkg);
 
             let readme = fs.readFileSync('README.md').toString();
-            subName(readme, name);
+            readme = subName(readme, name);
             fs.writeFileSync('README.md', readme);
 
             console.log(`Project \`${name}\` created.`);
