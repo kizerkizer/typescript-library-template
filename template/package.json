@@ -18,9 +18,9 @@
   "source": "./src/index.ts",
   "name": "%name%",
   "scripts": {
-    "prepare": "npm run clean && npm run build",
-    "build": "npm run build:ts*",
-    "build:ts": "npm run build:ts:node && npm run build:ts:esm",
+    "prepare": "npm run clean build",
+    "build": "npm run build:ts build:ts:node build:ts:esm build:tests",
+    "build:ts": "npm run build:ts:node build:ts:esm",
     "build:ts:node": "tsc --project ./tsconfig/tsconfig.commonjs.json",
     "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
     "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
