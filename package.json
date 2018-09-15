@@ -9,7 +9,7 @@
   "name": "typescript-project-template",
   "version": "1.1.0",
   "bin": {
-    "tpt": "index.js"
+    "tpt": "index.mjs"
   },
   "dependencies": {
     "commander": "^2.18.0",
