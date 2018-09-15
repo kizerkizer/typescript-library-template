@@ -28,18 +28,18 @@ commander
                 console.error(err);
                 return;
             }
-        });
+            let pkg = JSON.parse(fs.readFileSync('./package.json'));
+            subName(pkg, name);
+            fs.writeFileSync('./package.json', pkg);
 
-        let pkg = JSON.parse(fs.readFileSync('./package.json'));
-        subName(pkg, name);
-        fs.writeFileSync('./package.json', pkg);
+            let readme = fs.readFileSync('README.md').toString();
+            subName(readme, name);
+            fs.writeFileSync('README.md', readme);
 
-        let readme = fs.readFileSync('README.md').toString();
-        subName(readme, name);
-        fs.writeFileSync('README.md', readme);
-
-        console.log(`Project \`${name}\` created.`);
-        console.log(`Don't forget to initialize a git repository if desired.`);
+            console.log(`Project \`${name}\` created.`);
+            console.log(`Don't forget to initialize a git repository if desired.`);
+            });
     });
 
 commander.parse(process.argv);
+
