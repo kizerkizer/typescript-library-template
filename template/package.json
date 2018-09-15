@@ -13,8 +13,8 @@
     "typescript": "^3.0.3"
   },
   "license": "MIT",
-  "main": "./bin/cjs/index.js",
-  "module": "./bin/esm/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "source": "./src/index.ts",
   "name": "%name%",
   "scripts": {
@@ -25,9 +25,9 @@
     "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
     "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
     "bundle": "rollup --config",
-    "clean": "rm -rf ./bin && mkdir ./bin"
+    "clean": "rm -rf ./dist && mkdir ./dist"
   },
-  "types": "./bin/index.d.ts",
-  "typings": "./bin/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "version": "1.0.0"
 }

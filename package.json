@@ -1,18 +1,19 @@
 {
   "author": {
-    "name": "Alex Kizer"
-  },
-  "displayName": "Typescript Project Template",
-  "description": "",
-  "devDependencies": {},
-  "license": "MIT",
-  "main": "index.js",
-  "name": "typescript-project-template",
-  "version": "1.0.0",
-  "bin": {
-    "tpt": "index.js"
+      "name": "Alex Kizer"
+    },
+    "displayName": "Typescript Project Template",
+    "description": "",
+    "devDependencies": {},
+    "license": "MIT",
+    "main": "index.js",
+    "name": "typescript-project-template",
+    "version": "1.0.0",
+    "bin": {
+      "tpt": "index.js"
   },
   "dependencies": {
-    "commander": "^2.18.0"
+    "commander": "^2.18.0",
+    "ncp": "^2.0.0"
   }
 }
