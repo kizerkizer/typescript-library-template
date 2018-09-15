@@ -2,22 +2,32 @@
   "author": {
     "name": "Alex Kizer"
   },
+  "displayName": "%name%",
   "description": "",
   "devDependencies": {
     "@types/node": "^10.9.4",
+    "camelcase": "^5.0.0",
     "rollup": "^0.65.2",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "tslib": "^1.9.3",
     "typescript": "^3.0.3"
   },
   "license": "MIT",
-  "main": "./bin/node/index.js",
+  "main": "./bin/cjs/index.js",
   "module": "./bin/esm/index.js",
-  "ts": "./bin/typescript/index.ts",
-  "name": "typescript-library-template",
+  "source": "./src/index.ts",
+  "name": "%name%",
   "scripts": {
-    "build": "tsc --project ./tsconfig/tsconfig.node.commonjs.json && tsc --project ./tsconfig/tsconfig.esm.json",
-    "build-tests": "tsc --p tsconfig.tests.json",
-    "clean": "rm -rf ./bin && mkdir bin && mkdir bin/tests"
+    "prepare": "npm run clean && npm run build",
+    "build": "npm run build:ts*",
+    "build:ts": "npm run build:ts:node && npm run build:ts:esm",
+    "build:ts:node": "tsc --project ./tsconfig/tsconfig.commonjs.json",
+    "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
+    "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
+    "bundle": "rollup --config",
+    "clean": "rm -rf ./bin && mkdir ./bin"
   },
   "types": "./bin/index.d.ts",
-  "version": "1.1.0"
+  "typings": "./bin/index.d.ts",
+  "version": "1.0.0"
 }
