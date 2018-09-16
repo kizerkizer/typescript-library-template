@@ -21,7 +21,7 @@
     "prepare": "npm run clean && npm run build",
     "build": "npm run build:ts && npm run build:ts:node && npm run build:ts:esm && npm run build:tests",
     "build:ts": "npm run build:ts:node && npm run build:ts:esm",
-    "build:ts:node": "tsc --project ./tsconfig/tsconfig.commonjs.json",
+    "build:ts:node": "tsc --project ./tsconfig/tsconfig.cjs.json",
     "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
     "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
     "bundle": "rollup --config",
