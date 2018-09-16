@@ -27,7 +27,5 @@
     "bundle": "rollup --config",
     "clean": "rm -rf ./dist && mkdir ./dist"
   },
-  "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
   "version": "1.0.0"
 }
