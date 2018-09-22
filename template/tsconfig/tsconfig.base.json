@@ -30,5 +30,10 @@
         "skipLibCheck": true,
         "strict": true,
         "sourceMap": true
-    }
+    },
+    "exclude": [
+        "dist",
+        "playground",
+        "tools"
+    ]
 }
