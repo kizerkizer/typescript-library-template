@@ -12,7 +12,7 @@ import
 import 
     ncp from 'ncp';
  // https://stackoverflow.com/a/50052194
-const __dirname = dirname(new URL(import.meta.url).pathname),
+const __dirname = dirname(new URL(import.meta.url).pathname)
     .replace(/^\\\\/g, ''), // Windows
     {
         version 
