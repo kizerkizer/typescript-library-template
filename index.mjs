@@ -14,7 +14,7 @@ import
 
 // https://stackoverflow.com/a/50052194
 const __dirname = dirname(new URL(import.meta.url).pathname)
-    .replace(/^\\/g, ''), // Windows
+    .replace(/^\\/, ''), // Windows
     {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
