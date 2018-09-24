@@ -11,8 +11,9 @@ import
     commander from 'commander';
 import 
     ncp from 'ncp';
-
-const __dirname = dirname(new URL(import.meta.url).pathname), // https://stackoverflow.com/a/50052194
+ // https://stackoverflow.com/a/50052194
+const __dirname = dirname(new URL(import.meta.url).pathname),
+    .replace(/^\\\\/g, ''), // Windows
     {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
