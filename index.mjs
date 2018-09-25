@@ -14,9 +14,9 @@ import
 
 // https://stackoverflow.com/a/50052194
 const __dirname = dirname(new URL(import.meta.url).pathname)
-    .replace(/^\\/gm, ''); // Windows
+    .replace(/^\//gm, ''); // Windows
 
-console.log(__dirname);
+console.log(__dirname); // TODO remove
 
 const
     {
