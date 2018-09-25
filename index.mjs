@@ -13,8 +13,12 @@ import
     ncp from 'ncp';
 
 // https://stackoverflow.com/a/50052194
-const __dirname = __dirname || dirname(new URL(import.meta.url).pathname)
-    .replace(/^\\/gm, ''), // Windows
+const __dirname = dirname(new URL(import.meta.url).pathname)
+    .replace(/^\\/gm, ''); // Windows
+
+console.log(__dirname);
+
+const
     {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
