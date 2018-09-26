@@ -20,7 +20,7 @@
   "source": "./src/index.ts",
   "browser": "./dist/browser/index.js",
   "bundle": "./dist/browser/bundle.js",
-  "name": "graph-api",
+  "name": "%name%",
   "scripts": {
     "prepare": "npm run build",
     "build": "npm run build:ts && npm run build:tests && npm run build:browser",
@@ -33,7 +33,7 @@
     "build:browser:page": "robocopy.exe ./rollup.config/index.html ./dist/browser/index.html",
     "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
     "host": "http-server ./dist/browser",
-    "clean": "md dist"
+    "clean": ""
   },
-  "version": "1.0.0",
+  "version": "1.0.0"
 }
