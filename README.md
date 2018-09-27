@@ -11,19 +11,20 @@ Here are the corresponding package.json "starting point" properties:
   "main": "./dist/cjs/index.js",        // commonjs, for node or any other cjs environmen
 
   "module": "./dist/esm/index.js",      // es6 modules, for node with the `--experimental-modules` 
-                                        // flag (TODO: change file extensions to .mjs)
+                                        // flag (TODO: change file extensions to .mjs); or for
+                                        // rollup.js/webpack consumption.
 
-  "source": "./src/index.ts",           // preserve the original typescript source for source maps, debugging
+  "source": "./src/index.ts",           // preserve the original typescript source for generated 
+                                        // source maps, debugging, and reference.
 
   "browser": "./dist/browser/index.js", // UMD for the browser via rollup.js
 
   "bundle": "./dist/browser/bundle.js", // made this one up; contains everything (including imported modules)
                                         // bundled up into one file. One can directly include with 
-                                        // <script src=".../bundle.js"></script>
+                                        // <script src=".../bundle.js"></script>.
 ```
 
-So, you can `require` or `import`, or in bundle case directly reference by global definition. Further, all type information
-is preserved in published module, so more typescript modules can consume it as native typescript.
+So, you can `require` or `import`, or in the bundle case directly reference by global definition. Further, all type information is preserved in the published module, so more typescript modules can consume it as native ts.
 
 Please improve via PRs!
 
