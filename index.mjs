@@ -43,6 +43,10 @@ commander
             readme = subName(readme, name);
             fs.writeFileSync('README.md', readme);
 
+            let index = fs.readFileSync('config/rollup/index.html').toString();
+            index = subName(index, name);
+            fs.writeFileSync('config/rollup/index.html', index);
+
             console.log(`Project \`${name}\` created.`);
             console.log(`Don't forget to initialize a git repository if desired.`);
             });

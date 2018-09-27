@@ -1,6 +1,6 @@
 {
   "author": {
-    "name": "Alex Kizer"
+    "name": ""
   },
   "displayName": "%name%",
   "description": "",
@@ -25,13 +25,13 @@
     "prepare": "npm run build",
     "build": "npm run build:ts && npm run build:tests && npm run build:browser",
     "build:ts": "npm run build:ts:node && npm run build:ts:esm",
-    "build:ts:node": "tsc --project ./tsconfig/tsconfig.cjs.json",
-    "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
+    "build:ts:node": "tsc --project ./config/typescript/tsconfig.cjs.json",
+    "build:ts:esm": "tsc --project ./config/typescript/tsconfig.esm.json",
     "build:browser": "npm run build:browser:umd && npm run build:browser:bundle && npm run build:browser:page",
-    "build:browser:umd": "./node_modules/.bin/rollup --config ./rollup.config/rollup.config.umd.js",
-    "build:browser:bundle": "./node_modules/.bin/rollup --config ./rollup.config/rollup.config.bundle.js",
-    "build:browser:page": "robocopy.exe ./rollup.config/index.html ./dist/browser/index.html",
-    "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
+    "build:browser:umd": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.umd.js",
+    "build:browser:bundle": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.bundle.js",
+    "build:browser:page": "robocopy.exe ./config/rollup/index.html ./dist/browser/index.html",
+    "build:tests": "tsc --project ./config/typescript/tsconfig.tests.json",
     "host": "http-server ./dist/browser",
     "clean": ""
   },
