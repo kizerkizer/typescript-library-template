@@ -12,7 +12,13 @@ import
 import 
     ncp from 'ncp';
 
-const __dirname = dirname(new URL(import.meta.url).pathname), // https://stackoverflow.com/a/50052194
+// https://stackoverflow.com/a/50052194
+const __dirname = dirname(new URL(import.meta.url).pathname)
+    .replace(/^\//gm, ''); // Windows
+
+console.log(__dirname); // TODO remove
+
+const
     {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
@@ -36,6 +42,10 @@ commander
             let readme = fs.readFileSync('README.md').toString();
             readme = subName(readme, name);
             fs.writeFileSync('README.md', readme);
+
+            let index = fs.readFileSync('config/rollup/index.html').toString();
+            index = subName(index, name);
+            fs.writeFileSync('config/rollup/index.html', index);
 
             console.log(`Project \`${name}\` created.`);
             console.log(`Don't forget to initialize a git repository if desired.`);

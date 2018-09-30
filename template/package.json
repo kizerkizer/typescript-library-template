@@ -1,13 +1,15 @@
 {
   "author": {
-    "name": "Alex Kizer"
+    "name": ""
   },
   "displayName": "%name%",
   "description": "",
   "devDependencies": {
     "@types/node": "^10.9.4",
     "camelcase": "^5.0.0",
+    "http-server": "^0.11.1",
     "rollup": "^0.65.2",
+    "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-resolve": "^3.4.0",
     "tslib": "^1.9.3",
     "typescript": "^3.0.3"
@@ -16,16 +18,22 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "source": "./src/index.ts",
+  "browser": "./dist/browser/index.js",
+  "bundle": "./dist/browser/bundle.js",
   "name": "%name%",
   "scripts": {
-    "prepare": "npm run clean && npm run build",
-    "build": "npm run build:ts && npm run build:ts:node && npm run build:ts:esm && npm run build:tests",
+    "prepare": "npm run build",
+    "build": "npm run build:ts && npm run build:tests && npm run build:browser",
     "build:ts": "npm run build:ts:node && npm run build:ts:esm",
-    "build:ts:node": "tsc --project ./tsconfig/tsconfig.cjs.json",
-    "build:ts:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
-    "build:tests": "tsc --project ./tsconfig/tsconfig.tests.json",
-    "bundle": "rollup --config",
-    "clean": "rm -rf ./dist && mkdir ./dist"
+    "build:ts:node": "tsc --project ./config/typescript/tsconfig.cjs.json",
+    "build:ts:esm": "tsc --project ./config/typescript/tsconfig.esm.json",
+    "build:browser": "npm run build:browser:umd && npm run build:browser:bundle && npm run build:browser:page",
+    "build:browser:umd": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.umd.js",
+    "build:browser:bundle": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.bundle.js",
+    "build:browser:page": "robocopy.exe ./config/rollup/index.html ./dist/browser/index.html",
+    "build:tests": "tsc --project ./config/typescript/tsconfig.tests.json",
+    "host": "http-server ./dist/browser",
+    "clean": ""
   },
   "version": "1.0.0"
 }
