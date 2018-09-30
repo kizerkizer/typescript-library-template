@@ -14,12 +14,14 @@ import
 
 // https://stackoverflow.com/a/50052194
 const __dirname = dirname(new URL(import.meta.url).pathname)
-    .replace(/^\//gm, ''); // Windows
 
-console.log(__dirname); // TODO remove
+if (process.platform === 'win32') {
 
-const
-    {
+    // Remove starting back-slash.
+    __dirname = __dirname.replace(/^\//gm, '');
+}
+
+const {
         version 
     } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
     subName = (fileContents, name) => { return fileContents.replace(/\%name\%/g, name) };
