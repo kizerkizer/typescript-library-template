@@ -10,7 +10,7 @@ import {
 import
     commander from 'commander';
 import 
-    ncp from 'ncp';
+    copydir from 'copy-dir';
 
 // https://stackoverflow.com/a/50052194
 const __dirname = dirname(new URL(import.meta.url).pathname)
@@ -31,27 +31,28 @@ commander
     .command('init <name>')
     .action((name) => {
         console.log(`Creating \`${name}\`...`);
-        ncp.ncp(join(__dirname, 'template'), '.', (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
 
-            let pkg = fs.readFileSync('package.json').toString();
-            pkg = subName(pkg, name);
-            fs.writeFileSync('package.json', pkg);
+        try {
+            copydir.sync(join(__dirname, 'template'), '.')
+        } catch (error) {
+            console.log('Failed to copy files into current directory. Permissions issue?');
+            process.exit();
+        }
 
-            let readme = fs.readFileSync('README.md').toString();
-            readme = subName(readme, name);
-            fs.writeFileSync('README.md', readme);
+        let pkg = fs.readFileSync('package.json').toString();
+        pkg = subName(pkg, name);
+        fs.writeFileSync('package.json', pkg);
 
-            let index = fs.readFileSync('config/rollup/index.html').toString();
-            index = subName(index, name);
-            fs.writeFileSync('config/rollup/index.html', index);
+        let readme = fs.readFileSync('README.md').toString();
+        readme = subName(readme, name);
+        fs.writeFileSync('README.md', readme);
 
-            console.log(`Project \`${name}\` created.`);
-            console.log(`Don't forget to initialize a git repository if desired.`);
-            });
+        let index = fs.readFileSync('config/rollup/index.html').toString();
+        index = subName(index, name);
+        fs.writeFileSync('config/rollup/index.html', index);
+
+        console.log(`Project \`${name}\` created.`);
+        console.log(`Don't forget to initialize a git repository if desired.`);
     });
 
 commander.parse(process.argv);
