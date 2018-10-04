@@ -13,7 +13,7 @@ import
     copydir from 'copy-dir';
 
 // https://stackoverflow.com/a/50052194
-const __dirname = dirname(new URL(import.meta.url).pathname)
+let __dirname = dirname(new URL(import.meta.url).pathname)
 
 if (process.platform === 'win32') {
 
