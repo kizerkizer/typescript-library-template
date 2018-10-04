@@ -30,8 +30,7 @@
     "build:ts:esm": "tsc --project ./config/typescript/tsconfig.esm.json",
     "build:browser": "npm run build:browser:umd && npm run build:browser:bundle",
     "build:browser:umd": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.umd.js",
-    "build:browser:bundle": "./node_modules/.bin/rollup --config ./config/rollup/rollup.config.bundle.js",
-    "build:tests": "tsc --project ./config/typescript/tsconfig.tests.json"
+    "build:browser:bundle": "./node_modules/.bin/webpack --config ./webpack.config.js",
   },
   "version": "1.1.0"
 }
