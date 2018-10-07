@@ -7,7 +7,7 @@
   "devDependencies": {},
   "license": "MIT",
   "name": "typescript-project-template",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "bin": {
     "tpt": "index.mjs"
   },
