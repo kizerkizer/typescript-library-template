@@ -59,7 +59,7 @@ commander
 
         cl.rm('-r', './dotfiles');
 
-        cl.exec('npm', 'install');
+        cl.exec('npm install');
 
         console.log(`Project \`${name}\` created.`);
         console.log(`Don't forget to initialize a git repository if desired.`);
