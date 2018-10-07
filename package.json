@@ -4,11 +4,10 @@
   },
   "displayName": "Typescript Project Template",
   "description": "",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "license": "MIT",
   "name": "typescript-project-template",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "bin": {
     "tpt": "index.mjs"
   },
