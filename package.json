@@ -4,7 +4,9 @@
   },
   "displayName": "Typescript Project Template",
   "description": "",
-  "devDependencies": {},
+  "devDependencies": {
+    "shelljs": "^0.8.2"
+  },
   "license": "MIT",
   "name": "typescript-project-template",
   "version": "1.7.3",

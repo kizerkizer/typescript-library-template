@@ -6,6 +6,8 @@ import {
     join,
     dirname
 } from 'path';
+import
+    * as cl from 'shelljs';
 
 import
     commander from 'commander';
@@ -50,6 +52,8 @@ commander
         let index = fs.readFileSync('config/rollup/index.html').toString();
         index = subName(index, name);
         fs.writeFileSync('config/rollup/index.html', index);
+
+        cl('npm', 'install');
 
         console.log(`Project \`${name}\` created.`);
         console.log(`Don't forget to initialize a git repository if desired.`);
