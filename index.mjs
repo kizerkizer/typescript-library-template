@@ -53,6 +53,12 @@ commander
         index = subName(index, name);
         fs.writeFileSync('config/rollup/index.html', index);
 
+        for (let file of fs.readdirSync('./dotfiles')) {
+            fs.writeFileSync(`.${file}`, fs.readFileSync(join(__dirname, file)));
+        }
+
+        cl.rm('-r', './dotfiles');
+
         cl('npm', 'install');
 
         console.log(`Project \`${name}\` created.`);
