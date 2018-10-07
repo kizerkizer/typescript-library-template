@@ -54,7 +54,7 @@ commander
         fs.writeFileSync('config/rollup/index.html', index);
 
         for (let file of fs.readdirSync('./dotfiles')) {
-            fs.writeFileSync(`.${file}`, fs.readFileSync(join(__dirname, 'dotfiles', file)));
+            fs.writeFileSync(`.${file}`, fs.readFileSync(join('dotfiles', file)));
         }
 
         cl.rm('-r', './dotfiles');
