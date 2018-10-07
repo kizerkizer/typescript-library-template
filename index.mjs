@@ -6,9 +6,9 @@ import {
     join,
     dirname
 } from 'path';
-import
-    * as cl from 'shelljs';
 
+import
+    cl from 'shelljs';
 import
     commander from 'commander';
 import 
@@ -59,7 +59,7 @@ commander
 
         cl.rm('-r', './dotfiles');
 
-        cl('npm', 'install');
+        cl.exec('npm', 'install');
 
         console.log(`Project \`${name}\` created.`);
         console.log(`Don't forget to initialize a git repository if desired.`);
