@@ -59,10 +59,14 @@ commander
 
         cl.rm('-r', './dotfiles');
 
+        console.log('npm install...');
         cl.exec('npm install');
 
-        console.log(`Project \`${name}\` created.`);
-        console.log(`Don't forget to initialize a git repository if desired.`);
+        console.log('git init');
+        cl.exec('git init');
+
+        console.log(`Project \`${name}\` was created successfully.`);
+        console.log(`A git repository was initialized.`);
     });
 
 commander.parse(process.argv);
