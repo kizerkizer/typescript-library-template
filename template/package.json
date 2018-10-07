@@ -26,7 +26,7 @@
   "name": "%name%",
   "scripts": {
     "prepare": "npm run build",
-    "build": "npm run build:ts && npm run build:tests && npm run build:browser",
+    "build": "npm run build:ts && npm run build:browser",
     "build:ts": "npm run build:ts:node && npm run build:ts:esm",
     "build:ts:node": "tsc --project ./config/typescript/tsconfig.cjs.json",
     "build:ts:esm": "tsc --project ./config/typescript/tsconfig.esm.json",
