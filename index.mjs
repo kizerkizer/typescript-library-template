@@ -36,7 +36,6 @@ commander
 
         // Replace template variables.
         replaceVariableInFile('README.md', 'name', name);
-        replaceVariableInFile('config/rollup/index.html', 'name', name);
 
         // Copy dotfiles in explicity as they are missed otherwise.
         for (let file of fs.readdirSync('./dotfiles')) {
