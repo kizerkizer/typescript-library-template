@@ -32,7 +32,7 @@ commander
         console.log(`Creating \`${name}\`...`);
 
         // Copy in the template.
-        cl.cp('-r', join(__dirname, 'template'), '.');
+        cl.cp('-r', join(__dirname, 'template/**/*'), '.');
 
         // Replace template variables.
         replaceVariableInFile('README.md', 'name', name);
