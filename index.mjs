@@ -8,9 +8,9 @@ import {
 } from 'path';
 
 import
+    cl from 'shelljs';
+import
     commander from 'commander';
-import 
-    copydir from 'copy-dir';
 
 // https://stackoverflow.com/a/50052194
 let __dirname = dirname(new URL(import.meta.url).pathname)
@@ -23,8 +23,7 @@ if (process.platform === 'win32') {
 
 const {
         version 
-    } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
-    subName = (fileContents, name) => { return fileContents.replace(/\%name\%/g, name) };
+    } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json')));
 
 commander
     .version(version)
@@ -32,28 +31,35 @@ commander
     .action((name) => {
         console.log(`Creating \`${name}\`...`);
 
-        try {
-            copydir.sync(join(__dirname, 'template'), '.')
-        } catch (error) {
-            console.log('Failed to copy files into current directory. Permissions issue?');
-            process.exit();
+        // Copy in the template.
+        cl.cp('-r', join(__dirname, 'template'), '.');
+
+        // Replace template variables.
+        replaceVariableInFile('README.md', 'name', name);
+        replaceVariableInFile('config/rollup/index.html', 'name', name);
+
+        // Copy dotfiles in explicity as they are missed otherwise.
+        for (let file of fs.readdirSync('./dotfiles')) {
+            fs.writeFileSync(`.${file}`, fs.readFileSync(join('dotfiles', file)));
         }
+        cl.rm('-r', './dotfiles');
 
-        let pkg = fs.readFileSync('package.json').toString();
-        pkg = subName(pkg, name);
-        fs.writeFileSync('package.json', pkg);
+        // Initialize packages.
+        console.log('npm install...');
+        cl.exec('npm install');
 
-        let readme = fs.readFileSync('README.md').toString();
-        readme = subName(readme, name);
-        fs.writeFileSync('README.md', readme);
+        // Initialize git.
+        console.log('git init');
+        cl.exec('git init');
 
-        let index = fs.readFileSync('config/rollup/index.html').toString();
-        index = subName(index, name);
-        fs.writeFileSync('config/rollup/index.html', index);
-
-        console.log(`Project \`${name}\` created.`);
-        console.log(`Don't forget to initialize a git repository if desired.`);
+        console.log(`Project \`${name}\` was created successfully.`);
+        console.log(`A git repository was initialized.`);
     });
 
-commander.parse(process.argv);
+function replaceVariableInFile (filePath, variableName, variableSubstitution) {
+    let file = fs.readFileSync(filePath).toString();
+    file.replace(new RegExp(`%${variableName}%`, 'g'), variableSubstitution);
+    fs.writeFileSync(filePath, file);
+}
 
+commander.parse(process.argv);
