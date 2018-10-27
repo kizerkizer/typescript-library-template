@@ -8,9 +8,15 @@ import {
 } from 'path';
 
 import
-    cl from 'shelljs';
+    commander
+from 'commander';
+
 import
-    commander from 'commander';
+    _default
+from './instantiators/default.mjs';
+import
+    purets
+from './instantiators/purets.mjs';
 
 // https://stackoverflow.com/a/50052194
 let __dirname = dirname(new URL(import.meta.url).pathname)
@@ -23,42 +29,22 @@ if (process.platform === 'win32') {
 
 const {
         version 
-    } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json')));
+    } = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'))),
+    instantiators = {
+        '_default': _default,
+        'purets': purets
+    }; /*fs.readdirSync(join(__dirname, 'instantiators'))
+        .reduce(((object, filename) => (object[filename] = true, object)), {});*/
 
 commander
     .version(version)
-    .command('init <name>')
-    .action((name) => {
+    .command('init <name> [template]')
+    .action((name, template) => {
         console.log(`Creating \`${name}\`...`);
-
-        // Copy in the template.
-        cl.cp('-r', join(__dirname, 'template/**/*'), '.');
-
-        // Replace template variables.
-        replaceVariableInFile('README.md', 'name', name);
-
-        // Copy dotfiles in explicity as they are missed otherwise.
-        for (let file of fs.readdirSync('./dotfiles')) {
-            fs.writeFileSync(`.${file}`, fs.readFileSync(join('dotfiles', file)));
+        if (!template || !instantiators[template]) {
+            template = '_default';
         }
-        cl.rm('-r', './dotfiles');
-
-        // Initialize packages.
-        console.log('npm install...');
-        cl.exec('npm install');
-
-        // Initialize git.
-        console.log('git init');
-        cl.exec('git init');
-
-        console.log(`Project \`${name}\` was created successfully.`);
-        console.log(`A git repository was initialized.`);
+        template(name, __dirname);
     });
-
-function replaceVariableInFile (filePath, variableName, variableSubstitution) {
-    let file = fs.readFileSync(filePath).toString();
-    file.replace(new RegExp(`%${variableName}%`, 'g'), variableSubstitution);
-    fs.writeFileSync(filePath, file);
-}
 
 commander.parse(process.argv);

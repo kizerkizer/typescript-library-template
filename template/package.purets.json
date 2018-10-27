@@ -1,0 +1,31 @@
+{
+  "author": {
+    "name": ""
+  },
+  "displayName": "%name%",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "camelcase": "^5.0.0",
+    "http-server": "^0.11.1",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.0.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "source": "./src/index.ts",
+  "browser": "./dist/browser/index.js",
+  "bundle": "./dist/browser/bundle.js",
+  "name": "%name%",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "npm run build:ts && npm run build:browser",
+    "build:ts": "npm run build:ts:node && npm run build:ts:esm",
+    "build:ts:node": "tsc --project ./config/typescript/tsconfig.cjs.json"
+  },
+  "version": "1.1.0"
+}
