@@ -7,13 +7,16 @@
   "devDependencies": {},
   "license": "MIT",
   "name": "typescript-project-template",
+<<<<<<< HEAD
   "version": "1.10.6",
+=======
+  "version": "1.10.8",
+>>>>>>> 2f75cd92e7281d7b2e243584f2c85844af86ee69
   "bin": {
     "tpt": "index.mjs"
   },
   "dependencies": {
     "commander": "^2.18.0",
-    "copy-dir": "^0.4.0",
     "shelljs": "^0.8.2"
   }
 }
